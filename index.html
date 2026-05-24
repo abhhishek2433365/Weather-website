@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Explorer</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Leaflet CSS for map -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <!-- Chart.js for history chart -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <h1>Weather Explorer</h1>
+            <p>Stay updated with the latest weather conditions</p>
+            <div class="toggles">
+                <button id="unit-toggle" onclick="toggleUnits()">Switch to °F</button>
+                <button id="theme-toggle" onclick="toggleTheme()">Light Mode</button>
+                <button id="settings-toggle" onclick="openSettings()">Settings</button>
+            </div>
+        </header>
+
+        <div id="settings" class="settings-modal" style="display:none;">
+            <h4>App Settings</h4>
+            <label><input type="checkbox" id="show-map" checked> Show Map</label><br>
+            <label><input type="checkbox" id="show-aqi" checked> Show AQI</label><br>
+            <button onclick="closeSettings()">Close</button>
+        </div>
+
+        <div class="search-container">
+            <input type="text" id="city" placeholder="Enter city name...">
+            <input type="date" id="history-date">
+            <button onclick="getHistoricalWeather()">Get History</button>
+            <canvas id="history-chart" style="display: none; max-width: 100%; height: 200px;"></canvas>
+            <button onclick="startVoiceSearch()">🎤 Voice Search</button>
+            <button onclick="getWeather()">Search</button>
+            <button onclick="getCurrentLocationWeather()">Use My Location</button>
+            <button onclick="saveCity()">Save City</button>
+        </div>
+
+        <div id="error-message" class="error"></div>
+        <div id="loading" class="loading">Loading...</div>
+
+        <div class="weather-container">
+            <section class="current-weather">
+                <div class="icon">
+                    <!-- Current Weather Icon -->
+                </div>
+                <div class="info">
+                    <h2 id="cityName">City</h2>
+                    <p id="temperature">--°C</p>
+                    <p id="description">Description: --</p>
+                    <p id="humidity">Humidity: --%</p>
+                    <p id="wind">Wind: -- m/s</p>
+                    <p id="pressure">Pressure: -- hPa</p>
+                    <p id="uv-index">UV Index: --</p>
+                    <p id="sunrise">Sunrise: --</p>
+                    <p id="sunset">Sunset: --</p>
+                </div>
+            </section>
+
+            <section class="alerts" id="alerts" style="display: none;">
+                <h3>Weather Alerts</h3>
+                <p id="alert-text"></p>
+            </section>
+
+            <section class="forecast">
+                <h3>Hourly Forecast (Next 4 Hours)</h3>
+                <div class="hour">
+                    <p class="time">Time</p>
+                    <div class="icon"></div>
+                    <p class="temp">--°C</p>
+                </div>
+                <div class="hour">
+                    <p class="time">Time</p>
+                    <div class="icon"></div>
+                    <p class="temp">--°C</p>
+                </div>
+                <div class="hour">
+                    <p class="time">Time</p>
+                    <div class="icon"></div>
+                    <p class="temp">--°C</p>
+                </div>
+                <div class="hour">
+                    <p class="time">Time</p>
+                    <div class="icon"></div>
+                    <p class="temp">--°C</p>
+                </div>
+            </section>
+
+            <section class="air-quality">
+                <h3>Air Quality Index</h3>
+                <p id="aqi">AQI: -- (Loading...)</p>
+            </section>
+
+            <section class="map-section">
+                <h3>Location Map</h3>
+                <div id="map" style="height: 200px;"></div>
+            </section>
+
+            <section class="comparison">
+                <h3>Compare Cities</h3>
+                <div class="comparison-inputs">
+                    <input id="city1" placeholder="City 1">
+                    <input id="city2" placeholder="City 2">
+                    <button onclick="compareCities()">Compare</button>
+                </div>
+                <div id="comparison-result"></div>
+            </section>
+        </div>
+
+        <div class="favorites">
+            <h3>Saved Cities</h3>
+            <ul id="favorites-list"></ul>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>© 2026 Abhishek Rajput | Designed with Aditya Raj & Enhanced Features</p>
+    </footer>
+
+    <!-- Leaflet JS for map -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

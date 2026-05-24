@@ -1,0 +1,379 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* CSS Variables for Themes */
+:root {
+    --bg-color: rgba(34, 34, 34, 0.8);
+    --text-color: #fff;
+    --accent-color: #ff8c00;
+    --card-bg: #969191;
+    --forecast-bg: #1d1919;
+    --button-bg: #087a58;
+    --error-color: red;
+}
+
+/* Dark Theme Overrides */
+body.dark {
+    --bg-color: rgba(34, 34, 34, 0.8);
+    --text-color: #fff;
+    --card-bg: #969191;
+    --forecast-bg: #1d1919;
+}
+
+/* Light Theme Overrides */
+body.light {
+    --bg-color: rgba(255, 255, 255, 0.9);
+    --text-color: #000;
+    --card-bg: #f0f0f0;
+    --forecast-bg: #e0e0e0;
+    --button-bg: #4CAF50;
+    --accent-color: #ff5722;
+}
+
+/* Body Styling */
+body {
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: var(--text-color);
+    transition: background 0.5s ease;
+}
+
+/* App Container */
+.app-container {
+    background-color: var(--bg-color);
+    padding: 20px;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 800px;
+    text-align: center;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+    animation: fadeIn 1s ease-in;
+    position: relative; /* For modal positioning */
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Header Styling */
+.app-header h1 {
+    font-size: 2.5rem;
+    color: var(--accent-color);
+}
+
+.app-header p {
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.toggles {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+/* Settings Modal */
+.settings-modal {
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--card-bg);
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    z-index: 10;
+    width: 80%;
+    max-width: 300px;
+}
+
+.settings-modal h4 {
+    color: var(--accent-color);
+    margin-bottom: 10px;
+}
+
+/* Search Bar */
+.search-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+input[type="text"], input[type="date"] {
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 25px;
+    border: none;
+    flex: 1;
+    background: #f7f5f5;
+    color: #000;
+    outline: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+input[type="text"]:focus, input[type="date"]:focus {
+    transform: scale(1.05);
+    box-shadow: 0 0 5px var(--accent-color);
+}
+
+input[type="date"] {
+    /* Custom styling for date picker */
+    background: var(--card-bg);
+    color: var(--text-color);
+    border: 1px solid var(--accent-color);
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1); /* Make icon visible in dark mode */
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: var(--button-bg);
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s;
+}
+
+button:hover {
+    background-color: #c8c6ca;
+    transform: scale(1.05);
+}
+
+/* Error and Loading */
+.error {
+    color: var(--error-color);
+    margin: 10px 0;
+}
+
+.loading {
+    display: none;
+    color: var(--text-color);
+    font-size: 1.2rem;
+    margin: 10px 0;
+}
+
+.loading.show {
+    display: block;
+}
+
+/* Current Weather */
+.current-weather {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: var(--card-bg);
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 1s ease-in;
+}
+
+.current-weather .icon img {
+    width: 80px;
+}
+
+.info h2 {
+    font-size: 2rem;
+    color: var(--accent-color);
+}
+
+.info p {
+    font-size: 1.2rem;
+    margin: 5px 0;
+}
+
+/* Alerts */
+.alerts {
+    background: #ffcccc;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    color: #000;
+}
+
+/* Forecast Section */
+.forecast {
+    margin-bottom: 20px;
+}
+
+.forecast h3 {
+    margin-bottom: 10px;
+    color: var(--accent-color);
+}
+
+.hour {
+    background: var(--forecast-bg);
+    padding: 15px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+    display: inline-block;
+    margin: 5px;
+    width: 20%;
+    min-width: 100px;
+}
+
+.time {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: var(--accent-color);
+}
+
+.hour .icon img {
+    width: 50px;
+}
+
+.temp {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+/* Air Quality */
+.air-quality {
+    background: var(--card-bg);
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.air-quality h3 {
+    color: var(--accent-color);
+}
+
+/* Map */
+.map-section {
+    margin-bottom: 20px;
+}
+
+.map-section h3 {
+    color: var(--accent-color);
+}
+
+/* Comparison Section */
+.comparison {
+    background: var(--card-bg);
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+.comparison h3 {
+    color: var(--accent-color);
+    margin-bottom: 10px;
+}
+
+.comparison-inputs {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.comparison-inputs input {
+    flex: 1;
+    min-width: 150px;
+}
+
+#comparison-result {
+    margin-top: 10px;
+    text-align: left;
+}
+
+/* Favorites */
+.favorites {
+    background: var(--card-bg);
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.favorites h3 {
+    color: var(--accent-color);
+}
+
+#favorites-list {
+    list-style: none;
+    padding: 0;
+}
+
+#favorites-list li {
+    margin: 5px 0;
+    cursor: pointer;
+    color: var(--text-color);
+}
+
+#favorites-list li:hover {
+    text-decoration: underline;
+}
+
+/* Dynamic Background */
+body.clear {
+    background-image: url('https://images.pexels.com/photos/459451/pexels-photo-459451.jpeg?cs=srgb&dl=pexels-pixabay-459451.jpg&fm=jpg');
+}
+
+body.clouds {
+    background-image: url('https://images.pexels.com/photos/1034662/pexels-photo-1034662.jpeg?cs=srgb&dl=pexels-johannes-plenio-1034662.jpg&fm=jpg');
+}
+
+body.rain {
+    background-image: url('https://images.pexels.com/photos/125510/pexels-photo-125510.jpeg?cs=srgb&dl=pexels-pixabay-125510.jpg&fm=jpg');
+}
+
+body.snow {
+    background-image: url('https://images.pexels.com/photos/688660/pexels-photo-688660.jpeg?cs=srgb&dl=pexels-pixabay-688660.jpg&fm=jpg');
+}
+
+body.default {
+    background-image: url('https://media.istockphoto.com/id/926497236/photo/tropical-sea-in-summer.jpg?s=612x612&w=0&k=20&c=SgT--E-a5_UF4GPVnpC6r1IDtThuDiUHmtTbhHg5zJA=');
+}
+
+/* Footer */
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 5%;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 1.1rem;
+    color: var(--text-color);
+    background: rgba(5, 0, 0, 0.952);
+}
+
+/* Media Queries */
+@media (max-width: 600px) {
+    .hour {
+        width: 45%;
+    }
+    .search-container, .comparison-inputs {
+        flex-direction: column;
+    }
+    .settings-modal {
+        width: 90%;
+    }
+}
